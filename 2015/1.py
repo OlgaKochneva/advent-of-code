@@ -11,7 +11,7 @@ with open(filename) as f:
         else:
             floor -= 1
 
-print('Floor: ', floor)
+print('Floor:', floor)
 
 
 # Part 2
