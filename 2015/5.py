@@ -1,5 +1,4 @@
 import sys
-from collections import Counter
 
 def read_file(name: str):
     with open(name) as f:
