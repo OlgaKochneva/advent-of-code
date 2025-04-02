@@ -9,7 +9,7 @@ def read_file(name: str) -> list[str]:
         return f.readlines()
 
 
-def parse_commands(cmd_lines: list[str], wrong_mode: False) -> list[(callable, coord, coord)]:
+def parse_commands(cmd_lines: list[str], wrong_mode: bool = False) -> list[(callable, coord, coord)]:
     """Parses command lines provided in one of the following formats:
         turn on {int},{int} through {int},{int}
         turn off {int},{int} through {int},{int} 
