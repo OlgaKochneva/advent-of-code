@@ -4,10 +4,9 @@ from collections import namedtuple
 coord = namedtuple('coord', ['x', 'y'])
 
 
-def read_file(name: str):
+def read_file(name: str) -> list[str]:
     with open(name) as f:
-        for line in f:
-            yield line
+        return f.readlines()
 
 
 def parse_commands(cmd_lines: list[str], wrong_mode: False) -> list[(callable, coord, coord)]:
@@ -31,7 +30,7 @@ def parse_commands(cmd_lines: list[str], wrong_mode: False) -> list[(callable, c
     """
     commands = []
     parse_numbers = lambda l: coord(int(l.split(',')[0]), int(l.split(',')[1]))
-    for line in read_file(filename):
+    for line in cmd_lines:
         line = line.split()
         if line[0] == 'turn':
             if wrong_mode:
@@ -66,8 +65,8 @@ def count_lights(commands: list[(callable, coord, coord)]) -> int:
 
 
 if __name__ == '__main__':
-    filename = sys.argv[1]
-    commands = parse_commands(filename, True)
+    cmd_lines = read_file(sys.argv[1])
+    commands = parse_commands(cmd_lines, True)
     print('Number of turned on lights (part 1): ', count_lights(commands))
-    commands = parse_commands(filename, False)
+    commands = parse_commands(cmd_lines, False)
     print('Brightness of lights (part 2): ', count_lights(commands))
