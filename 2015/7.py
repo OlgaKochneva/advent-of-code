@@ -2,10 +2,7 @@ import sys
 from functools import cache
 from collections import namedtuple
 
-
-def read_file(name: str) -> list[str]:
-    with open(name) as f:
-        return f.readlines()
+from util import read_file
 
 COMMAND_MAPPING = {
     'ASSIGMENT': lambda x: x,
@@ -77,4 +74,4 @@ if __name__ == '__main__':
     run_commands.cache_clear()
     res_wire = run_commands('a')
     
-    print('Wire "a" = ',res_wire)
+    print('Wire "a" = ', res_wire)

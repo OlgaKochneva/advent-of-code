@@ -1,12 +1,9 @@
 import sys
 from collections import namedtuple
 
+from util import read_file
+
 coord = namedtuple('coord', ['x', 'y'])
-
-
-def read_file(name: str) -> list[str]:
-    with open(name) as f:
-        return f.readlines()
 
 
 def parse_commands(cmd_lines: list[str], wrong_mode: bool = False) -> list[(callable, coord, coord)]:
