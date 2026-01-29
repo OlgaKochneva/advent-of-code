@@ -1,7 +1,14 @@
+"""Lazy solution: using deepcopy and repeating the algorithm of checking neighbours more than necessary
+meaning we don't check if something changed after we removed a neighbour and just start algorithm anew.
+
+For example it takes 99 iteration for 2 part and the delay is visible. The solution 4_alternative.py fixes that problem.
+I left the two solutions in folder because I have a free will and I do whatever I want. 
+"""
+
 from util import *
 import copy
 
-def check_neighbours(i: int, j: int, data: list[str]) -> bool:
+def check_neighbours(i: int, j: int, data: list[list[str]]) -> bool:
     neighbours = 8
     check_idx = [
         (i - 1, j - 1), (i - 1, j), (i - 1, j + 1),
@@ -17,10 +24,10 @@ def check_neighbours(i: int, j: int, data: list[str]) -> bool:
         if neighbours < 4:
             break
     
-    return True if neighbours < 4 else False
+    return neighbours < 4
     
 
-def accessible_cargo(data: list[str]) -> int:
+def accessible_cargo(data: list[list[str]]) -> int:
     result = 0
     new_data = copy.deepcopy(data)
     for i in range(len(data)):
@@ -40,7 +47,7 @@ if __name__ == '__main__':
     print('Accessible cargo', removed)
     
     total_removed = removed
-    while removed !=0:
+    while removed != 0:
         removed, data = accessible_cargo(data)
         total_removed += removed
     
